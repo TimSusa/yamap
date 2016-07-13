@@ -1448,8 +1448,8 @@ module.exports = function (grunt) {
   //
   grunt.registerTask('cibuild', [
     'runBuild',
-    'connect:test',          // start internal test webserver
-    'karma:unit',            // run unit test cases only
+    // 'connect:test',          // start internal test webserver
+    // 'karma:unit',            // run unit test cases only
     'runDist'
   ]);
 
