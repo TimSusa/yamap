@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+// overrides here (do not use !default here)
+$grid-gutter-width: 30px;
+
+// $font-size-base: 16px;
+
+// $headings-font-weight: 800;
+// $screen-sm: 768px;
+$screen-sm-min: 769px;
+$grid-float-breakpoint: $screen-sm-min;
+
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: $grid-float-breakpoint - 1;

@@ -1,0 +1,27 @@
+@charset 'UTF-8';
+
+.show-480px {
+  @include media('>480px') {
+    display: none;
+  }
+}
+
+.hide-480px {
+  @include media('<=480px') {
+    display: none;
+  }
+}
+
+.main-page {
+
+  text-align: center;
+  width: 100%;
+
+  .here-map {
+    width: 66.6%;
+    height: calc(100vh * 3 / 4);
+    display: inline-block;
+    padding-top: 25px;
+    padding-bottom: 70px;
+  }
+}

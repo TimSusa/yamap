@@ -1,0 +1,55 @@
+@charset 'UTF-8';
+
+// bootstrap override
+$font-size-base: 14px;
+$font-size-large: ceil($font-size-base * 1.25);
+$font-size-small: ceil($font-size-base * .85);
+
+$font-size-h1: 51.957px;
+$font-size-h2: 32.437px;
+$font-size-h3: 20.25px;
+$font-size-h4: 16px;
+$font-size-h5: 13px;
+$font-size-h6: ceil($font-size-base * .85);
+
+// ~12px
+
+$color-style-2: #a7d7fb;
+$color-style-4: #f7f7f7;
+$color-style-3: #000;
+
+h1 {
+
+  // Font: Open Sans
+  // Weight: 800
+  // Style: normal
+  // Size: 51.957px
+  // Line Height: 1.2
+  // Text Color: #EF881F
+  // Background: #0064A0
+  @include set-font($white, $font-open-sans, 51.957px, normal, 800, 1.2);
+  // @include media('>phone', '>tablet') {
+  //   @include set-font($white, $font-open-sans, 51.957px, normal, 800, 1.2);
+  // }
+
+  // @include media('>phone', '<=tablet') {
+  //   @include set-font($white, $font-open-sans, 32.437px, normal, 300, 1.2);
+  // }
+
+  @include media('<=phone') {
+    @include set-font($white, $font-open-sans, 41.957px, normal, 800, 1.2);
+  }
+}
+
+.jumbo {
+  background: $bahama-blue;
+  color: $white;
+  padding-bottom: 20px;
+  padding-top: 20px;
+
+  h1 {
+    text-transform: uppercase;
+  }
+
+}
+

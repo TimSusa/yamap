@@ -1,0 +1,38 @@
+{
+  "name": "angular-here-maps",
+  "main": "./dist/angular-here-maps.min.js",
+  "version": "1.3.9",
+  "dependencies": {
+    "angular": ">=1.2.8",
+    "lodash": "~3.6.0",
+    "bind-polyfill": "~1.0.0"
+  },
+  "ignore": [
+    ".bowerrc",
+    ".jshintrc",
+    ".editorconfig",
+    ".gitattributes",
+    "Gruntfile.js",
+    ".gitignore",
+    ".travis.yml",
+    "*.html",
+    "app",
+    "test",
+    "tmp"
+  ],
+  "devDependencies": {
+    "angular-mocks": ">=1.2.x",
+    "angular-scenario": ">=1.2.x"
+  },
+  "appPath": "app",
+  "homepage": "https://github.com/lukemarsh/angular-here-maps",
+  "_release": "1.3.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.3.9",
+    "commit": "e21260fccf9dd3208f2a54e615ea3e0f3d2cc5f1"
+  },
+  "_source": "https://github.com/lukemarsh/angular-here-maps.git",
+  "_target": "^1.2.2",
+  "_originalSource": "angular-here-maps"
+}

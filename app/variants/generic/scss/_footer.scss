@@ -1,0 +1,39 @@
+@charset 'UTF-8';
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  // padding: 1rem;
+
+  background-color: $mine-shaft;
+  height: 70px;
+  text-align: center;
+
+
+  // .row {
+  //   margin-left: 0;
+  //   margin-right: 0;
+  // }
+
+  .p4-tos {
+    background-color: $mine-shaft;
+    color: $silver;
+    width: 100%;
+    padding-top: 25px;
+
+    a {
+      color: $silver;
+    }
+
+    .lp-tos {
+      background-color: $mine-shaft;
+      color: $white;
+
+      a {
+        color: $white;
+      }
+    }
+  }
+}

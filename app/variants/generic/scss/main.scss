@@ -1,0 +1,54 @@
+@charset 'UTF-8';
+
+//////////////////////
+//                  //
+// VARIANT: GENERIC //
+//                  //
+//////////////////////
+
+//
+// Global Mixins
+//
+@import 'mixins/global-mixins';
+@import 'mixins/media';
+
+
+//
+// Bootstrap Components / 3rd Party
+//
+@import 'bootstrap-variables-override';
+@import 'bootstrap';
+@import 'mapsjs-ui';
+
+
+//
+// Colors
+//
+@import 'colors';
+
+
+//
+// Font
+//
+@import 'open-sans';
+
+//
+// Layout & Sections
+//
+@import 'sections';
+
+
+//
+// UI Elements
+//
+@import 'nav-logged-out';
+@import 'links';
+@import 'input';
+@import 'footer';
+
+//
+// Views
+//
+@import 'main-page'; // static page
+@import 'contact'; // static pag
+@import 'style'; // logout css works here

@@ -1,0 +1,423 @@
+//
+// Divide up into two different navigations (big and small)
+//
+.nav-big {
+  @include media('<=tablet') {
+    display: none;
+  }
+}
+
+//
+// small
+//
+.nav-small {
+  @include media('>tablet') {
+    display: none;
+  }
+
+  .navbar-collapse {
+    margin-top: -10px;
+  }
+}
+
+// Set height and
+// get rid of round corner
+.navbar {
+  border: 0 solid transparent;
+  border-radius: 0;
+  height: 70px;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 3;
+}
+
+//
+// Main Navigation Class
+//
+.navi {
+  background-color: $white;
+  min-height: 70px;
+  padding-left: 2%;
+  padding-right: 2%;
+
+  // main nav items
+  .nav > li > a {
+    // padding-right: 0;
+    // padding: 10px 15px;
+    display: table-cell;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-shadow: none;
+    vertical-align: middle;
+    width: 80px;
+
+    &:hover,
+    &:active {
+      background: transparent;
+      background-color: transparent;
+      color: $orange;
+      text-shadow: none;
+    }
+
+    &:visited,
+    &:focus {
+      background: transparent;
+      background-color: transparent;
+      text-shadow: none;
+    }
+  }
+
+  // Menu button
+  .btn-md {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    height: 30px;
+    line-height: 1;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 190px;
+  }
+
+  a.menu-btn-right {
+    width: 190px;
+  }
+
+  // NAV BIG
+  @include media('>tablet') {
+    padding-left: 5%;
+    padding-right: 2%;
+
+    .logo {
+      height: 35px;
+      width: 173px;
+    }
+
+    .dropdown-menu {
+      // height: 70px;
+      background: $black-pearl;
+      font-size: 14px;
+      font-weight: 600;
+      left: -15%;
+      line-height: 1;
+    }
+
+    // let them arrange horizontally
+    .open > .dropdown-menu {
+      // display: inline-table;
+      // padding-left: 25%;
+      // padding-right: 25%;
+      width: 100%;
+
+      @include media('<1200px') {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    // main nav
+    .navbar-brand {
+      padding-right: 25px;
+    }
+    .navbar-nav li {
+      // display: table-cell;
+      height: 70px;
+      padding-left: 5px;
+      padding-right: 5px;
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .nav > li > a {
+      // padding-top: 25px;
+      display: table-cell;
+      height: 70px;
+      padding-left: 0;
+      padding-right: 0;
+      vertical-align: middle;
+    }
+
+    // Show main caret if subnav is open
+    .dropdown.wrap-caret.open > a > span {
+      color: $black-pearl;
+      display: inherit;
+      margin-left: 29px;
+      padding: 0;
+      position: absolute;
+      text-align: center;
+    }
+
+    // sub navigation
+    .open > ul > li > a {
+      color: $mercury;
+      font-size: 14px;
+      font-weight: 500;
+      height: 60px;
+      text-align: left;
+
+      > .hover-caret {
+        *display: inline;
+        border-left: solid 5px transparent;
+        display: inline-block;
+        height: 60px;
+        zoom: 1;
+      }
+
+      > .hover-caret:after {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+      }
+    }
+
+    .nav .open > a,
+    .nav .open > a:focus,
+    .nav .open > a:hover {
+      // padding-top: 25px;
+      background: none;
+      color: $orange;
+      display: table-cell;
+      height: 70px;
+      padding-left: 0;
+      padding-right: 0;
+      vertical-align: middle;
+    }
+
+    // Take out padding for dropdown li
+    .open > ul > li {
+      height: 60px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .open > ul > li > a {
+      background: none;
+      // color: $orange;
+      border-left: solid 5px transparent;
+      padding-left: 10px;
+    }
+
+    .open > ul > li > a:hover,
+    .open > ul > li > a:focus {
+      background: none;
+      border-left: solid 5px $orange-hover;
+      color: $orange;
+
+      // > .hover-caret {
+      //   *display: inline;
+      //   border-left: solid 5px $orange-hover;
+      //   display: inline-block;
+      //   height: inherit;
+      //   zoom: 1;
+      // }
+
+    }
+  }
+
+  // arrange item width
+  @include media('<1200px') {
+    padding-left: 2%;
+    padding-right: 2%;
+
+    .navbar-nav {
+      margin-left: 0;
+    }
+
+    .navbar-nav li {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .nav > li > a {
+      padding-right: 0;
+    }
+  }
+
+  // arrange item width
+  @include media('<990px') {
+    padding-left: 1%;
+    padding-right: 0;
+
+    .navbar-nav {
+      margin-left: 0;
+    }
+
+    .navbar-nav li {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .nav > li > a {
+      padding-left: 5px;
+      padding-right: 0;
+    }
+
+    .container-fluid {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .navbar-header {
+      margin-right: -15px;
+    }
+
+    .navbar-brand {
+      padding-right: 5px;
+    }
+
+    .logo {
+      margin-right: 10px;
+      width: 150px;
+    }
+  }
+
+  // NAV tablet
+  @include media('<=tablet') {
+    padding-left: 0;
+    padding-right: 0;
+
+    .container-fluid {
+      padding-left: 0;
+      padding-right: 15px;
+
+      .navbar-header {
+        padding-left: 15px;
+      }
+    }
+
+    .navbar-collapse {
+      border: 0;
+      padding-right: 0;
+    }
+
+    .dropdown-menu > li > a {
+      color: $lambda-blue;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+      width: 100%;
+    }
+
+    .item-main {
+      border-top: solid 1px $mercury;
+      margin-left: 0;
+      min-height: 45px;
+      padding-left: 0;
+      width: 100%;
+    }
+
+    .navbar-nav {
+      background: $white;
+      height: auto;
+      margin: 0;
+      margin-left: 0;
+    }
+
+    .logo {
+      height: auto;
+      width: auto;
+    }
+
+    .navbar-toggle {
+      height: 70px;
+      margin: 0;
+      padding-right: 15px;
+
+      @include media('<=phone') {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+
+    .open > a,
+    .open > a:focus,
+    .open > a:hover {
+      background: none;
+      color: $orange;
+      width: 100%;
+    }
+
+    .open > ul > li > a:hover {
+      background: none;
+      color: $orange;
+    }
+
+    // small items
+    .nav > li > a {
+      display: inline-block;
+      height: 45px;
+      padding-left: 15px;
+      padding-top: 12px;
+      width: 100%;
+    }
+
+    .fa-caret-right,
+    .fa-caret-down {
+      padding-left: 5px;
+    }
+
+    .menu-btn-right {
+      @include center-block;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+
+  // eof NAV tablet
+  .container-fluid {
+    .navbar-header {
+      height: 70px;
+    }
+  }
+
+  li {
+    // padding: 0;
+    // position: relative;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  // take out round corners
+  // let caret be on bottom
+  .dropdown-menu {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    min-height: 60px;
+    padding: 0;
+  }
+
+  // Hide caret
+  .dropdown.wrap-caret > a > span {
+    display: none;
+  }
+
+  // // main nav items
+  // .nav > li > a {
+  //   text-shadow: none;
+  //   vertical-align: middle;
+  //   width: 80px;
+  //   // padding-top: 10px;
+  //   // padding: 10px 15px;
+  //   // padding-right: 0;
+
+  //   &:hover,
+  //   &:active {
+  //     background: transparent;
+  //     background-color: transparent;
+  //     color: $orange;
+  //     text-shadow: none;
+  //   }
+
+  //   &:visited,
+  //   &:focus {
+  //     background: transparent;
+  //     background-color: transparent;
+  //     text-shadow: none;
+  //   }
+  // }
+}

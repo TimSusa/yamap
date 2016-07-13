@@ -1,0 +1,400 @@
+@charset 'UTF-8';
+
+// -- INPUT ELEMENTS  ------------------------------
+
+$color-input: #ddd;
+$color-input-1: #32373c;
+$color-input-2: #333;
+$color-input-3: #474747;
+$color-input-4: #c9c9c9;
+$color-input-5: #fefefd;
+$color-input-6: #979797;
+$color-input-7: #f1f1f1;
+$color-input-8: #5b8ac4;
+$color-input-9: #b00;
+$color-input-10: #f8cccc;
+$color-input-11: #ccc;
+$color-input-12: #808080;
+$color-input-13: #d30;
+$color-input-14: #a94442;
+$color-input-15: #a7d7fb;
+$color-input-16: #001722;
+$color-input-17: #e23333;
+$color-input-18: #3aa935;
+
+$font-input: 'Open Sans';
+
+input {
+  padding: 0 2px;
+}
+
+select {
+  background-color: $color-white;
+  border: 1px solid $color-input;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .07) inset;
+  color: $color-input-1;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 6px;
+  outline: 0 none;
+  padding: 2px;
+  transition: border-color .05s ease-in-out 0s;
+  vertical-align: middle;
+}
+
+fieldset.disabled,
+fieldset[disabled] {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.form-group,
+.form-group-sm {
+  margin-bottom: 10px;
+}
+
+.form-inline .form-group-sm {
+  display: inline-block;
+}
+
+.form-control {
+  color: $color-input-2;
+  display: inline-block;
+//  height: 28px;
+//  padding: 5px 10px;
+}
+
+.form-group.has-feedback {
+  display: inline-block;
+  height: auto;
+  margin-bottom: 15px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.input-group .form-control {
+  z-index: 0;
+}
+
+.has-feedback label ~ .form-control-switch > .form-control-feedback,
+.has-feedback label ~ .form-control-feedback {
+  top: 29px;
+}
+
+fieldset.disabled .form-control-feedback,
+fieldset[disabled] .form-control-feedback {
+  display: none;
+}
+
+// -- Tooltips  ------------------------------
+
+.form-control-feedback .form-control-tooltip {
+  z-index: 10;
+}
+
+.form-control-tooltip {
+  background-color: $color-input-5;
+  border: 1px solid $color-input-4;
+  border-radius: 6px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, .25);
+  color: $color-input-3;
+  font-family: $font-input;
+  font-size: 14px;
+  left: 50%;
+  line-height: 1.35;
+  opacity: 0;
+  padding: 8px;
+  pointer-events: none;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  // -moz-transform: translate3d(-50%, calc(-100% - 15px), 0);
+  // -ms-transform: translate3d(-50%, calc(-100% - 15px), 0);
+  // -webkit-transform: translate3d(-50%, calc(-100% - 15px), 0);
+  transform: translate3d(-50%, calc(-100% - 15px), 0);
+  // -moz-transition: opacity .35s;
+  // -o-transition: opacity .35s;
+  // -webkit-transition: opacity .35s;
+  transition: opacity .35s;
+  width: 200px;
+  z-index: 2;
+
+  &:after {
+    border-color: $color-input-7 transparent transparent;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    bottom: -10px;
+    content: '';
+    height: 0;
+    left: 50%;
+    position: absolute;
+    // -moz-transform: translate3d(-50%, 0%, 0);
+    // -ms-transform: translate3d(-50%, 0%, 0);
+    // -webkit-transform: translate3d(-50%, 0%, 0);
+    transform: translate3d(-50%, 0%, 0);
+    width: 0;
+  }
+
+  &:before {
+    border-color: $color-input-6 transparent transparent;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    bottom: -11px;
+    content: '';
+    height: 0;
+    left: 50%;
+    position: absolute;
+    // -moz-transform: translate3d(-50%, 0%, 0);
+    // -ms-transform: translate3d(-50%, 0%, 0);
+    // -webkit-transform: translate3d(-50%, 0%, 0);
+    transform: translate3d(-50%, 0%, 0);
+    width: 0;
+  }
+
+  // &:after {
+  //   border-color: $color-input-7 transparent transparent;
+  //   bottom: -10px;
+  // }
+}
+
+.form-control-feedback {
+  bottom: 3px;
+  cursor: pointer;
+  font-family: 'FontAwesome';
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  pointer-events: auto;
+  position: absolute;
+  right: 3px;
+  text-align: center;
+  width: 30px;
+
+  &:after {
+    content: '';
+  }
+}
+
+.form-control.ng-dirty.ng-invalid:focus + .form-control-feedback .form-control-tooltip,
+.form-control-feedback:hover .form-control-tooltip {
+  opacity: 1;
+  pointer-events: all;
+}
+
+// textarea.form-control:focus,
+// input.form-control:focus {
+.form-control:focus {
+  border-color: $color-input-8;
+  color: $color-input-3;
+}
+
+// textarea.form-control.ng-dirty.ng-invalid,
+// input.form-control.ng-dirty.ng-invalid {
+.form-control.ng-dirty.ng-invalid {
+  background-color: $color-input-10;
+  border: 1px solid $color-input-9;
+}
+
+// asterisk
+
+// textarea.form-control {
+// .form-control {
+//   &.ng-invalid-required + .form-control-feedback:after,
+//   &.ng-invalid-email + .form-control-feedback:after {
+//     content: '\f069';
+//     color: $color-input-11;
+//   }
+// }
+
+// input.form-control {
+.form-control {
+  &.ng-invalid-required + .form-control-feedback:after,
+  &.ng-invalid-email + .form-control-feedback:after {
+    color: $color-input-11;
+    content: '\f069';
+  }
+
+  &.ng-invalid + .form-control-feedback .form-control-tooltip {
+    background-color: $color-input-7;
+    border: 1px solid $color-input-6;
+    color: $color-input-12;
+  }
+}
+
+// textarea.form-control.ng-invalid + .form-control-feedback .form-control-tooltip {
+.form-control.ng-invalid + .form-control-feedback .form-control-tooltip {
+  background-color: $color-input-7;
+  border: 1px solid $color-input-6;
+  color: $color-input-12;
+}
+
+// input.form-control.ng-invalid + .form-control-feedback .form-control-tooltip:before,
+// textarea.form-control.ng-invalid + .form-control-feedback .form-control-tooltip:before {
+.form-control.ng-invalid + .form-control-feedback .form-control-tooltip:before {
+  border-color: $color-input-6 transparent transparent;
+  bottom: -11px;
+}
+
+// input.form-control.ng-invalid + .form-control-feedback .form-control-tooltip:after,
+// textarea.form-control.ng-invalid + .form-control-feedback .form-control-tooltip:after {
+.form-control.ng-invalid + .form-control-feedback .form-control-tooltip:after {
+  border-color: $color-input-7 transparent transparent;
+  bottom: -10px;
+}
+
+// exclamation-triangle
+
+// input.form-control.ng-dirty.ng-invalid + .form-control-feedback:after,
+// textarea.form-control.ng-dirty.ng-invalid + .form-control-feedback:after {
+.form-control.ng-dirty.ng-invalid + .form-control-feedback:after {
+  color: $color-input-9;
+  content: '\f071';
+}
+
+// input.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip,
+// textarea.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip {
+.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip {
+  background-color: $color-input-10;
+  border: 1px solid $color-input-17;
+  color: $color-input-9;
+}
+
+// input.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip:before,
+// textarea.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip:before {
+.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip:before {
+  border-color: $color-input-17 transparent transparent;
+  bottom: -11px;
+}
+
+// input.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip:after,
+// textarea.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip:after {
+.form-control.ng-dirty.ng-invalid + .form-control-feedback .form-control-tooltip:after {
+  border-color: $color-input-10 transparent transparent;
+  bottom: -10px;
+}
+
+// check
+// input.form-control.ng-dirty.ng-valid + .form-control-feedback:after,
+// textarea.form-control.ng-dirty.ng-valid + .form-control-feedback:after {
+.form-control.ng-dirty.ng-valid + .form-control-feedback:after {
+  color: $color-input-18;
+  content: '\f00c';
+}
+
+// input.form-control.ng-valid + .form-control-feedback .form-control-tooltip {
+.form-control.ng-valid + .form-control-feedback .form-control-tooltip {
+  display: none;
+}
+
+// textarea.form-control {
+.form-control {
+  &.ng-valid + .form-control-feedback .form-control-tooltip {
+    display: none;
+  }
+
+  &.crypto-key {
+    height: 200px;
+    resize: none;
+  }
+}
+
+// -- UI-Select  ------------------------------
+// .ui-select-bootstrap > .ui-select-match > .btn {
+//   background-color: $orange;
+//   color: $white;
+// }
+
+// .text-muted {
+//   color: $white;
+// }
+
+// .select2 > .select2-choice.ui-select-match {
+//   // Because of the inclusion of Bootstrap
+//   height: 29px;
+// }
+
+// .ui-select-match-text,
+// .ui-select-placeholder {
+//   font-size: 12px;
+//   vertical-align: top;
+// }
+
+// .ui-select-search {
+//   border-radius: 3px;
+//   font-size: 12px;
+//   line-height: 1.5;
+// }
+
+// .ui-select-bootstrap a:link {
+//   text-decoration: none;
+// }
+
+.has-error .form-control {
+  background-color: $color-input-13;
+  border-color: $color-input-14;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .075) inset;
+  color: $color-white;
+}
+
+// -- Radiobuttons  ------------------------------
+
+.radiobutton {
+  // font-weight: normal;
+  background-color: $color-white;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #E6E6E6;
+  color: $color-input-16;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 24px;
+  margin-right: 10px;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  &:enabled,
+  &:active,
+  &.active,
+  &:hover,
+  &.hover {
+    // background-color: #E6E6E6;
+    // background-image: none;
+    background-image: linear-gradient(to top, #f5f5f5 0%, #e8e8e8 100%);
+    border-radius: 4px;
+    border: 1px solid #E6E6E6;
+    color: $color-input-16;
+  }
+}
+
+// -- Credit Card Form ----------------------------
+
+.form-group {
+  .cardform__qtt {
+    padding: 5px 9px;
+    width: 47px;
+  }
+  .cardform__date {
+    width: 60px;
+  }
+  .cardform__cvc {
+    padding: 5px 9px;
+    width: 40px;
+  }
+}
+
+.cardform__dropdown {
+  min-width: auto;
+}
+
+// Form-Builder special wrapper
+// when used inside panel-body, revert panel-body's top/bottom padding
+.panel-body .form-builder fieldset:first-child {
+  margin-top: -15px;
+}
+
+.panel-body .form-builder fieldset:last-child {
+  margin-bottom: -15px;
+}

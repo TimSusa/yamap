@@ -1,0 +1,22 @@
+@ngdoc overview
+@name Customer-specific builds
+@sortOrder 500
+@description
+
+# Customer-specific builds
+
+## where to place custom images, styles, language, views
+
+## Custom Configuration
+
+config file location
+config file settings
+
+## Testing Custom build targets
+
+write custom config file
+select custom config file in index.html
+grunt serve
+
+
+## Building and deploying custom build targets

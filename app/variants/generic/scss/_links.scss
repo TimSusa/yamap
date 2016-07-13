@@ -1,0 +1,71 @@
+@charset 'UTF-8';
+
+$color-links: $lambda-blue;
+$color-links-1: $orange;
+
+a {
+  color: $color-links;
+  outline: none;
+  text-decoration: none;
+  text-shadow: none;
+  vertical-align: middle;
+
+  &:visited,
+  &:focus {
+    color: $color-links;
+    outline: none;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $color-links-1;
+    text-decoration: none;
+  }
+
+  &.blue {
+    color: $color-links;
+
+    &:visited {
+      color: $color-links;
+    }
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+
+  &.nolink,
+  &.nolink:focus,
+  &.nolink:hover,
+  &.nolink:active {
+    color: inherit;
+  }
+
+}
+
+a:hover,
+a:active {
+  background-color: transparent;
+  background: transparent;
+  color: $color-links-1;
+  text-shadow: none;
+}
+
+a:visited,
+a:focus {
+  background: transparent;
+  background-color: transparent;
+  text-shadow: none;
+}
+
+.active {
+  color: $color-links-1;
+}
+
+a:focus,
+a:visited {
+  background: none;
+  color: $color-links;
+  outline: none;
+  text-decoration: none;
+}

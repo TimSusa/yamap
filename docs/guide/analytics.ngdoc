@@ -1,0 +1,73 @@
+@ngdoc overview
+@name Analytics
+@sortOrder 800
+@description
+
+# GenericFrontend Analytics Integration
+
+<div class="alert alert-info">
+GenericFrontend frontend analytics is based on [Google Analytics (GA)](https://developers.google.com/analytics/devguides/collection/analyticsjs/events), but may be extended to other backend services.
+</div>
+
+Analytics is composed of the following components
+
+* {@link /api/yaMaps.services:analyticsServiceGa Analytics Service}
+* {@link /api/yaMaps.directives:track Track Directive}
+
+Configuration is done in the {@link /api/yaMaps.objects:globals globals} object under the property `analytics`:
+
+ *  `doNotTrack` - `{Array}` - disable tracking entirely (does not even load GA)
+ *  `accountId` - `{boolean}` - GA account to send tracking data to
+ *  `anonymizeIp` - `{boolean}` - enable user IP anonymization
+ *  `forceSSL` - `{boolean}` - enable sending all events over https
+ *  `displayFeatures` - `{boolean}` - send user device display settings
+ *  `domainName` - `{boolean}` - tracking domain (i.e. the site base URL)
+ *  `trackRoutes` - `{boolean}` - enable URL route tracking
+ *  `routeChangeEvent` - `{string}` - name of the Angular event that is fired on successful rote change, default: `$routeChangeSuccess`
+ *  `enhancedLinkAttribution` - `{boolean}` - enable detailed data collection for multiple links
+ *  `ignoreFirstPageLoad` - `{boolean}` - don't track the initial page load
+ *  `experimentId` - `{string}` - experimentation ID
+ *  `trackerConfig` - `{Object}` - custom GA tracker configuration
+
+
+## Event Tags for Google Analytics
+
+Google Analytics allows you to send custom event types that may contain the following fields:
+
+ * **Category** - `{string}` - a custom event category (e.g. user, content)
+ * **Action** - `{string}` - a custom event action (e.g. register, click, focus)
+ * **Label** - `{string}` - an optional event label (e.g. a name, title or href attribute)
+ * **Value** - `{number}` - an optional event value
+
+Google Analytics stores all events for an infinite amount of time. For reporting and defining goal completions, events may be filtered in the GA Console. Filters work on all event fields by any of the field values. Filters allow matching by full text, by prefix and regexp match.
+
+
+# GenericFrontend Event Tags
+
+The following list contains all events defined in the GenericFrontend app:
+
+
+Category  | Action          | Label               | Used in
+----------|-----------------|------------------------------------------------
+user      | register.click  | landing.top         | landing page
+          |                 | landing.middle      | landing page
+          |                 | landing.bottom      | landing page
+          |                 | header              | all views
+          |                 | home.top            | home page
+          |                 | home.bottom         | home page
+          |                 | pricing.bottom      | pricing page
+content   | more.click      | landing.more1       | landing page
+          |                 | landing.more2       | landing page
+          |                 | landing.step1       | landing page
+          |                 | landing.step2       | landing page
+          |                 | landing.step3       | landing page
+          |                 | landing.step4       | landing page
+          |                 | landing.price1      | landing page
+          |                 | landing.price2      | landing page
+          |                 | landing.price3      | landing page
+          |                 | landing.price4      | landing page
+content   | download.click  | usecase.games       | landing page
+          |                 | usecase.iot         | landing page
+          |                 | usecase.analytics   | landing page
+
+

@@ -1,0 +1,52 @@
+<!-- NAVIGATION-->
+<nav class="navi navbar site-header hidden-logged-in"
+  ng-controller="UserNavCtrl as unc"
+  ng-init="wasFoc=''; sub=''; minCaret=false">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#head-nav">
+        <span class="lambda-blue fa fa-bars fa-2x"></span>
+      </button>
+      <a class="navbar-brand" href="/home">
+        <img src="/assets/images/logo.svg" title="YaMaps" class="logo">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="head-nav">
+    <!-- BIG MENU -->
+      <ul class="nav navbar-nav nav-big">
+        <li ng-repeat="label in unc.menuNav.main"
+        class="dropdown wrap-caret"
+        ng-mouseover="wasFoc=label"
+        ng-mouseleave="wasFoc=''"
+        ng-class="{
+          'open': (label)&&(wasFoc===label)&&(unc.menuNav[label].length > 0),
+          'active': (wasFoc===label)&&unc.is(unc.menuNav[label], 1)}">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="{{(unc.menuNav[label].length > 0) ? 'javascript:void(0)' : label}}">{{label}}
+          </a>
+        </li>
+        <li><a href="//google.com">SEARCH</a></li>
+      </ul>
+      <!-- SMALL MENU -->
+      <ul class="nav navbar-nav nav-small">
+        <li ng-repeat="label in unc.menuNav.main"
+        class="dropdown item-main"
+        basic-click="unc.switchCaret($index)">
+          <a ng-if="unc.menuNav[label].length > 0" class="dropdown-toggle" data-toggle="dropdown">{{label}}
+          </a>
+          <a ng-if="unc.menuNav[label].length <= 0" ng-href="{{label}}" basic-click="site.closeNav()">{{label}}
+          </a>
+        </li>
+        <li class="item-main"><a href="//google.com">SEARCH</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="item-main">
+              <a href="/register">
+            <button class="btn btn-primary btn-md outline menu-btn-right" basic-click="site.closeNav()">
+              GO!
+            </button>
+            </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

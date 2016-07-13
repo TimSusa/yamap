@@ -1,0 +1,147 @@
+@ngdoc overview
+@name Writing Controllers
+@sortOrder 280
+@description
+
+# Writing Controllers
+
+There's different ways of implementing controllers in Angular which all have their pros and cons. Below are some controller patterns that have proven to be more efficient in practice because they are:
+
+* better maintainable (since it is easy to see what is exposed to $scope)
+* even more maintainable (since only the controller gets exposed to $scope)
+* memory efficient (since functions are declared in a single block and reused thereafter)
+* friendly to JSlint (since unused injected variables are detectable)
+
+## Controller Instantiation Pattern
+
+<div class="alert alert-info">
+**Hint:** Always use the `controllerAs` syntax when defining directives and views on routes. That way you expose *only* the controller on a scope, avoiding polluting inherited scopes with variables and allowing nested directives to access outside controllers more easily.
+</div>
+
+### Defining a directive
+```js
+angular.module('app').directive('myDirective', function () {
+
+	return {
+		restrict: 'A',
+		scope: true,
+		controller: 'MyController',
+
+		// controllerAs will expose the controller object on the scope under
+		// the specified name so templates and the directive can accet it
+		//
+		controllerAs: 'myCtrl',
+		templateUrl: 'template/mydirective.html',
+
+	link: function (scope) {
+
+		// Call controller methods from the directive
+		//
+		// Note: controller objects are created _before_ the directive link function
+		//       runs and each directive instantiation receives a _new_ controller
+		//       object. The controllerAs setting above instructs Angular to make
+		//       the controller object visible on scope under the defined name.
+		//
+		scope.myCtrl.fn(extend({}, opts));
+	}};
+})
+```
+
+### Defining an efficient Controller
+```js
+angular.module('app').controller('MyController',
+[ '$scope', '$injector', function ($scope, $injector) {
+
+	// 1 self reference
+	var controller = this;
+
+	// 2 requirements
+	var editController   = $injector.get('editController');
+	var translateService = $injector.get('translateService');
+	var $log             = $injector.get('$log');
+
+	// 3 Do scope stuff
+
+	// 3a Set up watchers on the scope
+	$scope.$watch(localesWatcher,                        updateWidgets, true);
+	$scope.$watch('translateService.getDefaultLocale()', updateWidgets);
+	$scope.$watch('preferences.showDisabledFields',      updateWidgets);
+
+	// 3b Expose methods or data on the scope
+	$scope.translateService = translateService;
+	$scope.widgets = [];
+
+	// 3c Listen to events on the scope
+	$scope.$on('widget.change', updateData);
+
+	// 4 Expose methods and properties on the controller instance
+	this.updateWidgets = updateWidgets;
+
+	// 5. Clean up
+	$scope.$on('$destroy', function () {
+		// Do whatever cleanup might be necessary
+		controller = null; // MEMLEAK FIX
+		$scope = null;     // MEMLEAK FIX
+	});
+
+	// 6. All the actual implementation goes here
+	function updateWidgets () {
+	}
+
+	function updateData () {
+	}
+
+}]);
+```
+
+
+## Controller Assembly Pattern
+
+Instantiate and assemble a complex controller from multiple simple controllers, exposing them to $scope.
+
+```js
+// Define Simple Controllers as usual
+//
+angular.module('app').controller('ListController',
+[ '$scope', function ($scope) {
+	...
+}]);
+
+angular.module('app').controller('ItemController',
+[ '$scope', function ($scope) {
+	...
+}]);
+
+// Assemble by referencing simple controllers
+//
+angular.module('app').controller('AssembledController',
+[ '$scope', '$controller', function ($scope, $controller) {
+
+	// Use Angular's controller provider to instantiate controllers on demand
+	// and inject the local scope as parameter
+	//
+	$scope.listController = $controller('ListController', {$scope: $scope});
+	$scope.itemController = $controller('ItemController', {$scope: $scope});
+
+}]);
+```
+
+## Controller Binding Pattern
+
+Break up large controllers into small parts, store the smaller parts in local variables and make their methods selectively accesssible from the outside.
+
+```
+angular.module('app').controller('ComplexController',
+[ '$scope', '$controller', function ($scope, $controller) {
+
+	// Use Angular's controller provider to instantiate controllers on demand
+	// and keep a reference as local variable
+	//
+	var listController = $controller('ListController', {$scope: $scope});
+
+	// Export functions on the complex controller by binding
+	//
+	this.clearLists = listController.clearLists.bind(listController);
+
+}]);
+```

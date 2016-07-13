@@ -1,0 +1,117 @@
+@ngdoc overview
+@name Building GenericFrontend
+@sortOrder 400
+@description
+
+# Building GenericFrontend
+
+<div class="alert alert-info">
+**Hint:** for local builds you way want to run **`grunt serve`** and point your browser to **`http://127.0.0.1:9000`** most of the time.
+</div>
+
+## Preparing your System
+
+### 1. Install Build Tools
+
+To check out the source code repository you need [Git](http://git-scm.com/) and for building the frontend app you need [npm](https://www.npmjs.com/).
+
+```
+# On Ubuntu Linux
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install git nodejs
+npm config set tmp=/tmp
+sudo npm -g install yo bower grunt-cli
+
+# On OSX using homebrew
+brew update
+brew install git nodejs
+npm config set tmp=/tmp
+npm -g install yo bower grunt-cli
+```
+
+<div class="alert alert-warn">
+**Note:** to run local tests you also need to install [Google Chrome](https://www.google.com/chrome/).
+</div>
+
+
+### 2. Check out the Source-Code Repository
+
+```
+git clone <user>@masterhoschi.dyndns.org:/var/repos/frontend
+```
+
+### 3. Install local build dependencies
+```
+cd frontend
+npm install
+```
+
+### *Optional:* In case you need to reinstall or upgrade bower dependencies
+```
+# Method 1: Upgrade (this is the preferred method)
+cd frontend
+bower update
+
+# Method 2: clean and full reinstall
+cd frontend
+rm -fr app/bower_components
+bower install
+```
+
+## Common Build Targets
+
+```
+Usage
+  grunt            - tests and builds minified version
+  grunt serve      - runs local webserver serving a live development version
+  grunt test       - runs unit tests
+  grunt build      - builds minified version in ./dist
+  grunt cibuild    - runs unit tests before building minified+compressed versions
+  grunt clean      - removes temporary files (/.tmp) and build files (./dist, ./target)
+  grunt distclean  - removes all build files and node_modules
+```
+
+### Build Directories
+```
+./build   - temporary build files (used for `grunt serve` and during full builds)
+./dist    - minified targets (all deployable scripts and assets)
+```
+
+## Development Builds
+```
+grunt serve
+```
+
+Will run a local webserver at **`http://127.0.0.1:9000`** hosting the Angular app and assets and a second server at **`http://127.0.0.1:9002`** hosting the documentation. This build target also watches the source tree for changes and updates (i.e. live reloads) the application.
+
+```
+grunt test
+```
+
+Will run the test suite. Make sure you execute this target before each check-in to the GIT repository.
+
+## Continuous Integration Builds
+```
+grunt cibuild
+```
+
+This target will also run the entire test suite.
+
+## Deployment Builds
+```
+grunt cibuild
+```
+
+
+## Customer-specific builds
+
+Builds can are customisable by passing the variables `variant` and `flavor` to grunt.
+
+* `variant` - is a customer-spcific build that allows overwriting views, language files and styles (default variant: `generic`)
+* `flavor` - is a special configuration of a variant selecting a particular app configuration file named `app/<variant>/scripts/conf-<flavor>.js` (default flavor: `dev`)
+
+
+```
+grunt <target> --variant=generic --flavor=dev
+```

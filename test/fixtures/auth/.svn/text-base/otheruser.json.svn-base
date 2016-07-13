@@ -1,0 +1,17 @@
+{
+    "user_id": "2",
+    "url": "https://lxmediasrv.qbus.intern/api/users/2",
+    "user_permissions": [],
+    "groups": [],
+    "org": null,
+    "last_login": "2015-04-07T12:07:30.154193Z",
+    "is_superuser": false,
+    "avatar": null,
+    "email": "other",
+    "nickname": "other",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2015-04-07T10:46:14.836254Z"
+}

@@ -1,0 +1,434 @@
+@charset 'UTF-8';
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Global mixins taken from: http://www.sitepoint.com/sass-mixins-kickstart-project/
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// size():
+//
+// Example Usage:
+//
+//   .element {
+//     @include size(100%);
+//   }
+//
+//   or:
+//
+//   .other-element {
+//     @include size(100%, 1px);
+//   }
+//
+// CSS Result:
+//
+//   .element {
+//     width: 100%;
+//     height: 100%;
+//   }
+//
+//   .other-element {
+//     width: 100%;
+//     height: 1px;
+//   }
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// absolute() / fixed() / relative()
+//
+// Example Usage:
+//
+//   .element {
+//     @include absolute(top 0 left 1em);
+//   }
+//
+//   or:
+//
+//   .other-element {
+//     @include fixed(top 1em left 'WAT? A STRING?!' right 10% bottom)
+//   }
+//
+// CSS Result:
+//
+// .element {
+//   position: absolute;
+//   top: 0;
+//   left: 1em;
+// }
+//
+// .other-element {
+//   position: fixed;
+//   top: 1em;
+//   right: 10%;
+// }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@mixin position($position, $args) {
+  @each $o in top right bottom left {
+    $i: index($args, $o);
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+  position: $position;
+}
+
+@mixin absolute($args) {
+  @include position('absolute', $args);
+}
+
+@mixin fixed($args) {
+  @include position('fixed', $args);
+}
+
+@mixin relative($args) {
+  @include position('relative', $args);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// prefix()
+//
+// Example Usage:
+//
+// .element {
+//   @include prefix((transform: translate(-50%, -50%)), webkit ms);
+// }
+//
+// or:
+//
+// .other-element {
+//   @include prefix((
+//     column-count: 3,
+//     column-gap: 1em,
+//     column-rule: 1px solid silver,
+//     column-width: 20em
+//   )), webkit moz);
+// }
+//
+// CSS Result:
+//
+// .element {
+//   -webkit-transform: translate(-50%, -50%);
+//   -ms-transform: translate(-50%, -50%);
+//   transform: translate(-50%, -50%);
+// }
+//
+// or:
+//
+// .other-element {
+//   -webkit-column-count: 3;
+//   -moz-column-count: 3;
+//   column-count: 3;
+//   -webkit-column-gap: 1em;
+//   -moz-column-gap: 1em;
+//   column-gap: 1em;
+//   -webkit-column-rule: 1px solid silver;
+//   -moz-column-rule: 1px solid silver;
+//   column-rule: 1px solid silver;
+//   -webkit-column-width: 20em;
+//   -moz-column-width: 20em;
+//   column-width: 20em;
+// }
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@mixin prefix($map, $vendors: webkit moz ms o) {
+  @each $prop, $value in $map {
+    @if $vendors {
+      @each $vendor in $vendors {
+        #{'-' + $vendor + '-' + $prop}: #{$value};
+      }
+    }
+    // Dump regular property anyway
+    #{$prop}: #{$value};
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// transform()
+//
+// Example Usage:
+//
+// .element {
+//   @include transform(rotate(42deg));
+// }
+//
+// CSS Result:
+//
+// .element {
+//   -webkit-transform: rotate(42deg);
+//   -ms-transform: rotate(42deg);
+//   transform: rotate(42deg);
+// }
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@mixin transform($value) {
+  @include prefix(transform, $value, webkit ms);
+}
+
+@mixin column-count($value) {
+  @include prefix(column-count, $value, webkit moz);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// opposite-direction()
+//
+// Example Usage:
+//
+// $direction: opposite-direction(top);
+// // bottom
+//
+// $other-direction: opposite-direction(bottom left);
+// // top right
+//
+// CSS Result:
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@function opposite-direction($directions) {
+  $opposite-directions: ();
+  $direction-map: ('top': 'bottom', 'right': 'left', 'bottom': 'top', 'left': 'right', 'ltr': 'rtl', 'rtl': 'ltr');
+  @each $direction in $directions {
+    $opposite-direction: map-get($direction-map, $direction);
+    @if $opposite-direction != null {
+      $opposite-directions: append($opposite-directions, #{$opposite-direction});
+    } @else {
+      @warn 'No opposite direction can be found for `#{$direction}`.';
+    }
+  }
+  @return $opposite-directions;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CENTERER
+@mixin x-y-centerer($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if ($horizontal and $vertical) {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  } @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+  } @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+@mixin center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//
+// GENERATORS
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BOOTSTRAP GRID LAYOUT CREATOR
+// @mixin clearfix() {
+//   &:before,
+//   &:after {
+//     content: ' '; // 1
+//     display: table; // 2
+//   }
+
+//   &:after {
+//     clear: both;
+//   }
+// }
+
+// %clearfix {
+//   &:after {
+//     clear: both;
+//     content: ' ';
+//     display: table;
+//   }
+// }
+
+%clearfix {
+  // *zoom: 1;
+
+  &:after {
+    clear: both;
+    content: '';
+    display: table;
+    line-height: 0;
+  }
+}
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+$grid-float-breakpoint: 768px !default;
+
+
+// Creates a wrapper for a series of columns
+@mixin make-row($gutter: $grid-gutter-width) {
+  // Then clear the floated columns
+  @extend %clearfix;
+  // @include clearfix();
+
+  @media (min-width: $screen-sm-min) {
+    margin-left: ($gutter / -2);
+    margin-right: ($gutter / -2);
+  }
+
+  // Negative margin nested rows out to align the content of columns
+  .row {
+    margin-left: ($gutter / -2);
+    margin-right: ($gutter / -2);
+  }
+}
+
+// Generate the extra small columns
+@mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
+  // Inner gutter via padding
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  padding-left: ($gutter / 2);
+  padding-right: ($gutter / 2);
+  position: relative;
+
+  // Calculate width based on number of columns available
+  @media (min-width: $grid-float-breakpoint) {
+    float: left;
+    width: percentage(($columns / $grid-columns));
+  }
+}
+
+// Generate the small columns
+@mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
+  // Inner gutter via padding
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  padding-left: ($gutter / 2);
+  padding-right: ($gutter / 2);
+  position: relative;
+
+  // Calculate width based on number of columns available
+  @media (min-width: $screen-sm-min) {
+    float: left;
+    width: percentage(($columns / $grid-columns));
+  }
+}
+
+// Generate the small column offsets
+@mixin make-sm-column-offset($columns) {
+  @media (min-width: $screen-sm-min) {
+    margin-left: percentage(($columns / $grid-columns));
+  }
+}
+
+@mixin make-sm-column-push($columns) {
+  @media (min-width: $screen-sm-min) {
+    left: percentage(($columns / $grid-columns));
+  }
+}
+
+@mixin make-sm-column-pull($columns) {
+  @media (min-width: $screen-sm-min) {
+    right: percentage(($columns / $grid-columns));
+  }
+}
+
+// Generate the medium columns
+@mixin make-md-column($columns, $gutter: $grid-gutter-width) {
+  // Inner gutter via padding
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  padding-left: ($gutter / 2);
+  padding-right: ($gutter / 2);
+  position: relative;
+
+  // Calculate width based on number of columns available
+  @media (min-width: $screen-md-min) {
+    float: left;
+    width: percentage(($columns / $grid-columns));
+  }
+}
+
+// Generate the medium column offsets
+@mixin make-md-column-offset($columns) {
+  @media (min-width: $screen-md-min) {
+    margin-left: percentage(($columns / $grid-columns));
+  }
+}
+
+@mixin make-md-column-push($columns) {
+  @media (min-width: $screen-md-min) {
+    left: percentage(($columns / $grid-columns));
+  }
+}
+
+@mixin make-md-column-pull($columns) {
+  @media (min-width: $screen-md-min) {
+    right: percentage(($columns / $grid-columns));
+  }
+}
+
+// Generate the large columns
+@mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
+  // Inner gutter via padding
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  padding-left: ($gutter / 2);
+  padding-right: ($gutter / 2);
+  position: relative;
+
+  // Calculate width based on number of columns available
+  @media (min-width: $screen-lg-min) {
+    float: left;
+    width: percentage(($columns / $grid-columns));
+  }
+}
+
+// Generate the large column offsets
+@mixin make-lg-column-offset($columns) {
+  @media (min-width: $screen-lg-min) {
+    margin-left: percentage(($columns / $grid-columns));
+  }
+}
+
+@mixin make-lg-column-push($columns) {
+  @media (min-width: $screen-lg-min) {
+    left: percentage(($columns / $grid-columns));
+  }
+}
+
+@mixin make-lg-column-pull($columns) {
+  @media (min-width: $screen-lg-min) {
+    right: percentage(($columns / $grid-columns));
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+// Create Fontface / font-family via fontdef
+@mixin fontdef($open-sans-path, $open-sans-version, $font-type:'Regular') {
+  src: url('#{$open-sans-path}/#{$font-type}/OpenSans-#{$font-type}.eot?v=#{$open-sans-version}');
+  src: url('#{$open-sans-path}/#{$font-type}/OpenSans-#{$font-type}.eot?#iefix&v=#{$open-sans-version}') format('embedded-opentype'),
+        url('#{$open-sans-path}/#{$font-type}/OpenSans-#{$font-type}.woff2?v=#{$open-sans-version}') format('woff2'),
+        url('#{$open-sans-path}/#{$font-type}/OpenSans-#{$font-type}.woff?v=#{$open-sans-version}') format('woff'),
+        url('#{$open-sans-path}/#{$font-type}/OpenSans-#{$font-type}.ttf?v=#{$open-sans-version}') format('truetype'),
+        url('#{$open-sans-path}/#{$font-type}/OpenSans-#{$font-type}.svg?v=#{$open-sans-version}##{$font-type}') format('svg');
+}
+
+///////////////////////////////////////////////////////////////////////////
+@mixin set-font($color, $font-family, $font-size, $font-style, $font-weight, $line-height) {
+  color: $color;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  text-shadow: none;
+}

@@ -1,0 +1,34 @@
+@ngdoc overview
+@name Writing Glossary Entries
+@sortOrder 700
+@description
+
+# Writing Glossary Entries
+
+<div class="alert alert-info">
+When writing new glossary entries make sure to add them to **all customer-specific files** in **all languages** and follow the structure below.
+</div>
+
+
+A glossary of common terms is dynamically rendered from a language description file under `assets/lang/glossary-{lang}.json`. The renderer fetches the corresponding file based on the currently selected frontend language as defined with `$translate` service.
+
+The glossary file contains a single JSON object with the following structure (note that object and property keys are case sensitive):
+```js
+{
+	"glossary": {
+        "keyOne": {
+            "title": "The Title",
+            "text": "A text description"
+        },
+        "keyTwo": {
+            "title": "The Next Title",
+            "text": "Another text description"
+        }
+}
+```
+
+**Keys** must be unique and valid Javascript object property names (i.e. they may not start with a number and not contain spaces, commas, dots or other special characters besides `_` and `-`).
+
+**Title** and **Text** properties inside keyed objects may contain HTML tags. When rendered they are automatically passed through Angular's `$sce` service to sanitize their contents.
+
+

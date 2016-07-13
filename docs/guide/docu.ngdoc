@@ -1,0 +1,173 @@
+@ngdoc overview
+@name Writing Documentation
+@sortOrder 600
+@description
+
+# Howto read and write LamdaNow documentation
+
+Documentation in LamdaNow is written inline with the source code in [ngdocs](https://github.com/m7r/grunt-ngdocs) style, a special flavor of [JSDocs](http://usejsdoc.org/) that is extended by some Angular-specific keywords (see below). jsdocs is quite powerful. It even allows you to mix [Markdown](https://daringfireball.net/projects/markdown/syntax), normal HTML and inline preformatted code.
+
+ngdocs comes in two parts, a build tool that compiles jsdoc/ngdocs comments found in the source code into HTML templates, and an Angular app that renders the templates and creates a menu structure and handles search around them.
+
+<div class="alert alert-warning">
+**Note:** although ngdocs is unmaintained as of this writing (early 2015) it is still an easy way of processing documentation. Moreover, it works. An alternative for upgrading would be [docular](https://github.com/Vertafore/docular).
+</div>
+
+
+## Browsing Documentation
+
+<div class="alert alert-info">
+The best way to access the documentation locally is to run **`grunt serve`** and open the url **http://0.0.0.0:9002** in a web browser.
+</div>
+
+Documentation is built as part of the normal application build process. ngdocs writes its output files as self-contained application to `dist/docs`. From there files may be served by any webserver like a regular single-page app (i.e. rewriting all non-asset urls to index.html).
+
+
+
+## Writing Documentation
+
+Documentation is written in **comment blocks inline with the Javascript code**. Blocks for documenting a service, filter, directive, or controller should start at the top of the file, whereas documentation for functions/methods should be inline directly preceeding the definition of the function.
+
+In some cases such as overviews or general topics the entire documentation may be put into `*.ngdoc` files next to the code. For example, you'll find developer guide and tutorial files under `frontend/docs`.
+
+For detailed descriptions, please see the following links or continue reading
+
+- [Writing Angular Documentation](https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation) (out-of-date)
+- [ngdocs wiki](https://github.com/m7r/grunt-ngdocs/wiki) (out-of-date)
+- [Using JSDoc](http://usejsdoc.org/)
+
+A typical ngdocs comment block must at least contain the following pieces:
+
+```js
+/**
+  * @ngdoc <block type>
+  * @name <unit name>
+  * @module <module>
+  * @description <text>
+  */
+```
+
+The `@ngdoc` keyword defines the **block type** that follows. Different block types require different entries and are rendered and sorted in a different way. **Unit name** is the name of the component (e.g. service, filter, function, top-level module, etc). **Module** is the name of the [Angular module](https://docs.angularjs.org/guide/module) in which the documented object is defined. The description may contain Markdown syntax and even inline HTML code.
+
+ngdocs supports the following block types:
+
+* **overview** - the most general block for
+* **service** - an Angular service
+* **directive** - an Angular directive
+* **controller** - an Angular controller
+* **filter** - an Angular filter
+* **function** or **method** - a function or method of an object
+* **interface** - a Javascript object type
+* **object** - a Javascript object
+* **error** - an Angular error (not required for code outside Angular itself)
+* **inputType** - an input field type (not required for code outside Angular itself)
+
+
+### Names and Links inside the Documentation
+
+Names in ngdocs are used to uniquely navigate documentation blocks and to assign blocks to categories. Categories define how and where the documentation appears inside the ngdocs app's navigation menu. ngdocs naming conventions are as follows
+
+```
+/** For general documentation blocks
+  * @ngdoc overview
+  * @name <module>
+  */
+
+/** For Angular specific objects
+  * @ngdoc {service|directive|filter}
+  * @name <module>.<blocktype>:<unit name>
+  */
+
+/** For Functions
+  * @ngdoc function
+  * @name <module>.<blocktype>:<unit name>#<method name>
+  */
+
+/** For Types (note: unit name must start with uppercase letter)
+  * @ngdoc object
+  * @name <module>:<unit name>
+  */
+```
+
+Links may be written using Markdown syntax as `[text](url)` or using the ngdocs syntax:
+
+* External Link - {`@link http://angular-ui.github.com/ng-grid/ ngGrid`}
+* Internal link - {`@link yaMaps.directive:configGen configGen`}
+
+Note that internal links use the `@name` of a block as link target.
+
+
+## Directive Example
+```
+/**
+  * @ngdoc directive
+  * @name yaMaps.directive:configGen
+  * @module yaMaps
+  * @kind directive
+  * @restrict AE
+  * @element ANY
+  * @description
+  * This directive generates dynamic HTML5 form field sets from definitions....
+  *
+  * @param {expression} data Expression to eval...
+  * @param {expression} readonly Expression to eval...
+  */
+```
+
+## Service Example
+```
+/**
+  * @ngdoc service
+  * @name yaMaps.service:authService
+  * @module yaMaps
+  * @kind service
+  * @requires $cookieStore
+  * @requires $rootScope
+  * @requires $location
+  * @requires $route
+  * @requires $http
+  * @requires $log
+  * @requires $q
+  *
+  * @description
+  * Central service for managing user logins. The service stores a local cookie
+  * that contains the user's name and access token.
+  *
+  */
+```
+
+## Function/Method Example
+```
+/**
+  * @ngdoc method
+  * @name yaMaps.service:authService#login
+  * @methodOf yaMaps.service:authService
+  * @kind function
+  *
+  * @description
+  * Sends user login request to the backend and stores user credentials on success.
+  *
+  * @param {string} username The username for which to execute the login.
+  * @param {string} password The user's password.
+  *
+  * @returns {Promise} A promise resolving to the user's name or failure reason.
+  *
+  */
+```
+
+## Event Example
+```
+/**
+  * @ngdoc object
+  * @name yaMaps.service:authService#loginSuccess
+  * @eventOf yaMaps.service:authService
+  * @eventType broadcast on $rootScope
+  * @description
+  * Broadcasted on `$rootScope` if a user was logged in successfully.
+  *
+  * @param {Object} event Synthetic angular event object.
+  * @param {string} username Logged in user's name.
+  */
+```
+
+

@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html ng-app="yaMaps" lang="en-US" class="no-js" ng-controller="SiteCtrl as site" ng-class="site.getSiteClasses()">
+
+<head>
+  <meta charset="utf-8">
+  <title ng-bind="site.customer.title"></title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+<!--   <meta name="fragment" content="!"> -->
+  <meta name="title" content="{{site.customer.longtitle}}">
+  <meta name="creator" content="yaMaps">
+  <meta name="subject" content="{{site.customer.title}}">
+  <meta name="description" content="Description for generic frontend comes here!">
+  <meta name="keywords" content="bli, bla, blub">
+  <meta name="copyright" content="{{site.appVersion.license}}">
+  <meta name="robots" content="index,follow">
+
+  <!-- build:css styles/yaMaps.<%= revision %>.min.css -->
+  <link rel="stylesheet" href="styles/mixed.css">
+  <!-- endbuild -->
+  <!-- build:js scripts/yaMaps.<%= revision %>.min.js -->
+  <!-- Vendor libraries -->
+  <!-- keep jquery on top to autoreplace jqLite in angular -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-scroll/angular-scroll.js"></script>
+  <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+  <script src="bower_components/stacktrace-js/dist/stacktrace.js"></script>
+  <script src="bower_components/lodash/lodash.js"></script>
+
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-pano.js" type="text/javascript" charset="utf-8"></script>
+
+  <!-- Application code -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/constants.js"></script>
+  <script src="scripts/templates.html.js"></script>
+  <script src="scripts/conf-<%= flavor %>.js"></script>
+  <script src="scripts/services/logService.js"></script>
+  <script src="scripts/services/mapConfig.js"></script>
+  <script src="scripts/controllers/siteCtrl.js"></script>
+  <script src="scripts/controllers/userCtrl.js"></script>
+  <script src="scripts/controllers/mainPageCtrl.js"></script>
+  <script src="scripts/directives/userNav.js"></script>
+  <script src="scripts/directives/basicClick.js"></script>
+
+  <script src="scripts/directives/map.js"></script>
+  <script src="scripts/directives/marker.js"></script>
+  <script src="scripts/directives/markerIcon.js"></script>
+  <script src="scripts/directives/markers.js"></script>
+  <script src="scripts/directives/templateMarker.js"></script>
+  <script src="scripts/directives/templateWindow.js"></script>
+
+  <!-- endbuild -->
+</head>
+
+<body>
+  <header ng-include="'views/header.html'"></header>
+    <div ng-view autoscroll="true">
+
+    </div>
+<!--     <div class="container">
+      <div class="row">
+        <div class="col-lg-12" ng-view autoscroll="true">
+        </div>
+      </div>
+    </div> -->
+  <footer ng-include="'views/footer.html'"></footer>
+
+
+  <!-- NO JS -->
+  <noscript>
+    <div class="container">
+      <div class="row one_home">
+        <img src="/assets/images/logo.svg" width="420" alt="YaMaps" title="YaMaps" border="0" class="mainbild">
+        <h1>YaMaps</h1>
+        <h2>The Generic Frontend</h2>
+        <br />
+        <h3>Please enable Javascript to use this site.</h3>
+      </div>
+    </div>
+  </noscript>
+</body>
+
+</html>

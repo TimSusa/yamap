@@ -1,0 +1,30 @@
+@ngdoc overview
+@name Dependencies
+@sortOrder 120
+@description
+
+# Dependencies
+
+## Libraries used to build GenericFrontend
+
+* [AngularJS](https://angularjs.org/) 1.4.0
+  * AngularJS Cookies 1.4.0
+  * AngularJS Sanitize 1.4.0
+  * AngularJS Route 1.4.0
+* [angular-translate](http://pascalprecht.github.io/angular-translate/) 2.6.1
+* [angular-ui-bootstrap](http://angular-ui.github.io/bootstrap/) 0.12.1
+* [angular-scroll](https://github.com/oblador/angular-scroll) 0.6.5
+* [jquery](http://jquery.com/) 2.1.3
+* [Bootstrap](http://getbootstrap.com/) 3.3.2
+
+## 3rd-party Libraries loaded at Runtime
+
+* Stripe https://js.stripe.com/v2/
+* Google Analytics https://www.google-analytics.com/analytics.js
+
+
+## Web Fonts
+
+* [Font Awesome](http://fortawesome.github.io/Font-Awesome/) 4.3.0
+* Spoon Bold
+* Spoon Regular

@@ -1,0 +1,56 @@
+@charset 'UTF-8';
+
+// https://github.com/FontFaceKit/open-sans
+
+// Variables
+$open-sans-path: '../../../assets/fonts/open-sans' !default;
+
+// Version
+$open-sans-version: '1.1.0' !default;
+
+// BEGIN Light
+@font-face {
+  font-family: 'Open Sans';
+  @include fontdef($open-sans-path, $open-sans-version, 'Light');
+  font-weight: 300;
+  font-style: normal;
+}
+
+// BEGIN Regular
+@font-face {
+  font-family: 'Open Sans';
+  @include fontdef($open-sans-path, $open-sans-version, 'Regular');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// BEGIN Semibold
+@font-face {
+  font-family: 'Open Sans';
+  @include fontdef($open-sans-path, $open-sans-version, 'Semibold');
+  font-weight: 600;
+  font-style: normal;
+}
+
+// BEGIN ExtraBold
+@font-face {
+  font-family: 'Open Sans';
+  @include fontdef($open-sans-path, $open-sans-version, 'ExtraBold');
+  font-weight: 800;
+  font-style: normal;
+}
+
+// BEGIN Italic
+@font-face {
+  font-family: 'Open Sans';
+  @include fontdef($open-sans-path, $open-sans-version, 'Italic');
+  font-weight: normal;
+  font-style: italic;
+}
+
+$font-open-sans: 'Open Sans', sans-serif;
+
+// bootstrap override
+$font-family-sans-serif:  $font-open-sans;
+
+
