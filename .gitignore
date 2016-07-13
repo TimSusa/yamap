@@ -23,3 +23,4 @@ Gemfile.lock
 debian/frontend.debhelper.log
 debian/frontend.substvars
 /snapshots/
+test/fixtures/auth/.svn
