@@ -41,16 +41,6 @@ if [ "${ENV}" == "production" ]; then
   GRUNT_TASK="cibuild"
 fi
 
-# If second parameter is e2e-start-cluster, just do e2e test with starting a real cluster
-if [ "${2}" == "e2e-start-cluster" ]; then
-  GRUNT_TASK="${2}"
-fi
-
-# If second parameter is e2e-start-heatmap, just do e2e test with starting a real heatmap
-if [ "${2}" == "e2e-start-heatmap" ]; then
-  GRUNT_TASK="${2}"
-fi
-
 # Prepare rvm, gem and bundle install
 test -e ~/.rvm/scripts/rvm || curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable
 source ~/.rvm/scripts/rvm

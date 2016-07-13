@@ -481,6 +481,8 @@ module.exports = function (grunt) {
     //     dest: '<%= config.build %>/scripts/templates.json.js'
     //   }
     // },
+
+    //
     // SASS compiler configuration
     //
     sass: {
@@ -974,67 +976,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    // Render static html for SEO purposes
-    //
-    htmlSnapshot: {
-      all: {
-        options: {
-          // that's the path where the snapshots should be placed
-          // it's empty by default which means they will go into the directory
-          // where your Gruntfile.js is placed
-          snapshotPath: 'snapshots/',
-          // This should be either the base path to your index.html file
-          // or your base URL. Currently the task does not use it's own
-          // webserver. So if your site needs a webserver to be fully
-          // functional configure it here.
-          sitePath: 'https://www.yaMaps.com/',
-          // you can choose a prefix for your snapshots
-          // by default it's 'snapshot_'
-          fileNamePrefix: '',
-          // y default the task waits 500ms before fetching the html.
-          // this is to give the page enough time to to assemble itself.
-          // if your page needs more time, tweak here.
-          msWaitForPages: 1000,
-          // sanitize function to be used for filenames. Converts '#!/' to '_' as default
-          // has a filename argument, must have a return that is a sanitized string
-          sanitize: function (requestUri) {
-            // returns 'index.html' if the url is '/', otherwise a prefix
-            return requestUri.replace(/\.[^/.]+$/, '');
-          },
-          // sanitize: function (requestUri) {
-          //   // returns 'index.html' if the url is '/', otherwise a prefix
-          //   if (/\//.test(requestUri)) {
-          //     return 'index.html';
-          //   } else {
-          //     return requestUri.replace(/\//g, 'prefix-');
-          //   }
-          // },
-          // if you would rather not keep the script tags in the html snapshots
-          // set `removeScripts` to true. It's false by default
-          removeScripts: true,
-          // set `removeLinkTags` to true. It's false by default
-          removeLinkTags: true,
-          // set `removeMetaTags` to true. It's false by default
-          removeMetaTags: true,
-          // Replace arbitrary parts of the html
-          // replaceStrings:[
-          //     {'this': 'will get replaced by this'},
-          //     {'/old/path/': '/new/path'}
-          // ],
-          // allow to add a custom attribute to the body
-          // bodyAttr: 'data-prerendered',
-          // here goes the list of all urls that should be fetched
-          urls: [
-            'welcome',
-            'home'
-          ],
-          // a list of cookies to be put into the phantomjs cookies jar for the visited page
-          // cookies: [
-          //   {"path": "/", "domain": "localhost", "name": "lang", "value": "en-gb"}
-          // ]
-        }
-      }
-    },
     // Build documentation
     //
     ngdocs: {
@@ -1235,85 +1176,6 @@ module.exports = function (grunt) {
     });
   });
 
-  // grunt.registerMultiTask('json2js', 'Converts JSON files to $templateCache entries', function () {
-
-  //   var path = require('path');
-  //   var util = require('util');
-  //   var options = this.options({
-  //     useStrict: false,
-  //     module: 'template-json',
-  //     base: '.'
-  //   });
-  //   grunt.verbose.writeflags(options, "Options");
-
-  //   var counter = 0;
-  //   var strict = (options.useStrict) ? '"use strict";\n' : '';
-
-  //   // convert Windows file separator URL path separator
-  //   var normalizePath = function(p) {
-  //     if ( path.sep !== '/' ) {
-  //       p = p.replace(/\\/g, '/');
-  //     }
-  //     return p;
-  //   };
-
-  //   // Warn on and remove invalid source files (if nonull was set).
-  //   var existsFilter = function(filepath) {
-  //     if (!grunt.file.exists(filepath)) {
-  //       grunt.log.warn('Source file "' + filepath + '" not found.');
-  //       return false;
-  //     } else {
-  //       return true;
-  //     }
-  //   };
-
-  //   var escapeContent = function(content) {
-  //     var quoteChar = '\'';
-  //     var indentString = '  ';
-  //     var bsRegexp = new RegExp('\\\\', 'g');
-  //     var quoteRegexp = new RegExp('\\' + quoteChar, 'g');
-  //     var nlReplace = '\\n' + quoteChar + ' +\n' + indentString + indentString + quoteChar;
-  //     return content.replace(bsRegexp, '\\\\').replace(quoteRegexp, '\\' + quoteChar).replace(/\r?\n/g, nlReplace);
-  //   };
-
-  //   // compile a template to an angular module
-  //   var compileTemplate = function(moduleName, filepath) {
-  //     var content = grunt.file.read(filepath);
-  //     var TEMPLATE = '$templateCache.put(\'%s\', \n    \'%s\');\n';
-  //     return util.format(TEMPLATE, moduleName, escapeContent(content));
-  //   };
-
-  //   // generate a separate module
-  //   function generateModule (f) {
-
-  //     // f.dest must be a string or write will fail
-  //     var moduleNames = [];
-  //     var filePaths = f.src.filter(existsFilter);
-  //     var modules = filePaths.map(function(filepath) {
-  //       var moduleName = normalizePath(path.relative(options.base, filepath));
-  //       moduleNames.push("'" + moduleName + "'");
-  //       return compileTemplate(moduleName, filepath);
-  //     });
-
-  //     counter += modules.length;
-  //     modules  = modules.join('\n');
-
-  //     var targetModule = f.module || options.module;
-  //     // jscs: disable
-  //     var bundle = "angular.module('" + targetModule + "',
-  // []).run(['$templateCache', function($templateCache) {\n" + strict;
-
-  //     modules += '\n}]);\n';
-
-  //     grunt.file.write(f.dest, grunt.util.normalizelf(bundle + modules));
-  //   }
-
-  //   this.files.forEach(generateModule);
-
-  //   // Just have one output, so if we making thirty files it only does one line
-  //   grunt.log.writeln("Successfully converted " + ("" + counter).green + " json templates to js.");
-  //   // jscs: enable
-  // });
 
   //
   // Find unused images
@@ -1352,14 +1214,6 @@ module.exports = function (grunt) {
     });
   });
 
-  // Combined Task for building language files from variants
-  //
-  // grunt.registerTask('i18n', [
-  //   // 'merge-json',
-  //   'trim-nulls',
-  //   // 'json2js'
-  // ]);
-
   // grunt serve
   //
   grunt.registerTask('serve', function (target) {
@@ -1379,7 +1233,6 @@ module.exports = function (grunt) {
       'purifycss',
       'replace:styles',
       'postcss:dist',
-      // 'autoprefixer',
       // 'i18n',
       'html2js',
       'update_docs',
@@ -1402,7 +1255,6 @@ module.exports = function (grunt) {
     'concat:styles',
     'replace:styles',
     'postcss:dist',
-    // 'autoprefixer',
     // 'i18n',
     'html2js',
     'unusedImages'
@@ -1423,7 +1275,6 @@ module.exports = function (grunt) {
     'svgmin',
     'usebanner',           // add banners to CSS files
     'compress',            // compress files with gzip
-    'htmlSnapshot',        // create static html snapshots
     'update_docs',         // prepare copying docu scripts
     'ngdocs'               // build documentation from source files
   ]);
@@ -1526,7 +1377,6 @@ module.exports = function (grunt) {
     'svgmin',              // copy svg and minimize
     'usebanner',           // add banners to CSS files
     'compress',            // compress files with gzip
-    // 'htmlSnapshot',        // create static html snapshots
     'update_docs',         // prepare copying docu scripts
     'ngdocs'               // build documentation from source files
   ]);
@@ -1540,11 +1390,10 @@ module.exports = function (grunt) {
     'test'                 // run all test subtasks
   ]);
 
-  // grunt.loadNpmTasks('grunt-json-pretty');
   grunt.loadNpmTasks('grunt-protractor-webdriver');
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-html-snapshot');
+
   grunt.loadNpmTasks('grunt-responsive-images-extender');
   grunt.loadNpmTasks('grunt-purifycss');
 };

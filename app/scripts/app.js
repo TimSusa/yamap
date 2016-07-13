@@ -50,8 +50,6 @@ var app = angular.module( 'yaMaps', [
   'yaMaps.templates.html',
   'duScroll',
   'ui.bootstrap'
-  // 'angular-here-maps'
-  // 'angularHereMaps'
 ]);
 
 /**

@@ -3,7 +3,7 @@ angular.module('yaMaps')
 
 .constant('version', {
   revision: '',
-  flavor: 'develop',
+  flavor: 'production',
   built: 'Tue Jul 12 2016 12:03:05',
   version: '1.0.1',
   license: 'MIT'
@@ -24,7 +24,7 @@ angular.module('yaMaps')
   keepMessages: 20,
   customer:{
     title: 'YaMaps',
-    longtitle: 'YaMaps - A generic Frontend',
+    longtitle: 'YaMaps - Yet another map...',
     name: 'generic',
     domain: 'yaMaps.com',
   },
