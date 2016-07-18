@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Marker Example</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-4">
+
+        <form role="form" class="black space-right space-left space-bottom">
+          <div class="form-group">
+            <label for="zoom">Zoom:</label>
+            <input type="number" class="form-control" id="zoom" placeholder="{{evc.map.zoom}}" ng-bind="evc.map.zoom">
+          </div>
+          <div class="form-group">
+            <label for="lat">lat:</label>
+            <input type="number" class="form-control" id="lat" placeholder="{{evc.map.center.lng}}" ng-bind="evc.map.center.lng">
+          </div>
+          <div class="form-group">
+            <label for="lng">lng:</label>
+            <input type="number" class="form-control" id="lng" placeholder="{{evc.map.center.lat}}" ng-bind="evc.map.center.lat">
+          </div>
+        </form>
+
+      </div>
+      <div class="col-sm-8">
+        <div class="wrap-right">
+          <data-map class="examples-marker" center="evc.map.center" zoom="evc.map.zoom">
+            <data-marker coordinates="evc.marker.coordinates" icon="evc.marker.icon"></data-marker>
+          </data-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

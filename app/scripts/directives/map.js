@@ -1,4 +1,6 @@
 'use strict';
+/* global _: true */
+/* global H: true */
 /**
  * @ngdoc directive
  * @name yaMaps.directives:Map
@@ -19,6 +21,7 @@ angular.module('yaMaps')
     var MapConfig = $injector.get('MapConfig');
     var $document = $injector.get('$document');
     var $compile = $injector.get('$compile');
+    // var $rootScope = $injector.get('$rootScope');
 
     function toDotNotation ( object, path ) {
       path = String(path).split('.');
@@ -34,9 +37,8 @@ angular.module('yaMaps')
       restrict: 'EA',
       transclude: true,
       replace: true,
-      // scope: {
-      //   map: '@userNav'
-      // },
+      // scope: { zoom: '@' },
+      controllerAs: 'devc',
       controller: function($scope, $element, $attrs) {
 
         var defaultLayers,
@@ -46,8 +48,11 @@ angular.module('yaMaps')
           markerWindow,
           group;
 
-        console.log('map: ', $attrs, ' scope: ', $scope);
+        // $scope.$watch($scope, function (newTime) {
+        //   console.log(newTime);
+        // });
 
+        console.log('map: ', $attrs, ' scope: ', $scope.devc);
         $scope.zoom = toDotNotation($scope, $attrs.zoom);
         $scope.center = toDotNotation($scope, $attrs.center);
         $scope.bounds = toDotNotation($scope, $attrs.bounds);

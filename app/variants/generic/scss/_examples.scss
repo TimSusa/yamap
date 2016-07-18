@@ -1,0 +1,17 @@
+.examples {
+  .panel-body {
+    padding: 0;
+    height: calc(100vh - 200px);
+  }
+
+  .wrap-right {
+    .examples-marker {
+      width: inherit;
+      height: calc(100vh - 200px);
+      padding: 0;
+    }
+  }
+
+}
+
+

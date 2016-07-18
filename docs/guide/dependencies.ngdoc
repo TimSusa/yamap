@@ -5,7 +5,7 @@
 
 # Dependencies
 
-## Libraries used to build GenericFrontend
+## Libraries used to build YaMaps
 
 * [AngularJS](https://angularjs.org/) 1.4.0
   * AngularJS Cookies 1.4.0

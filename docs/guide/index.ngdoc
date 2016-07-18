@@ -2,9 +2,9 @@
 @name Developer Guide
 @description
 
-# Guide to GenericFrontend Documentation
+# Guide to YaMaps Documentation
 
-Everything you need to know about developing the GenericFrontend fontend application.
+Everything you need to know about developing the YaMaps fontend application.
 
 <div class="alert alert-warning">
 **Note:** this guide is targeted towards developers who are already familiar with AngularJS basics. If you're just getting started, we recommend you have a look at the [AngularJS Tutorial](https://docs.angularjs.org/tutorial) and the [AngularJS Documentation](https://docs.angularjs.org/guide) first.
@@ -17,16 +17,16 @@ Everything you need to know about developing the GenericFrontend fontend applica
 * {@link /guide/controllers Writing Controllers}
 * {@link /guide/docu Writing Documentation}
 * {@link /guide/glossary Writing Glossary Entries}
-* {@link /guide/build Building GenericFrontend}
+* {@link /guide/build Building YaMaps}
 * {@link /guide/custom Customer-specific builds}
 
 ## Core Concepts
 
-GenericFrontend is a single-page Javascript application ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) written in [AngularJS](https://docs.angularjs.org/api). Right now we're using AngularJS version 1.4.0.
+YaMaps is a single-page Javascript application ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) written in [AngularJS](https://docs.angularjs.org/api). Right now we're using AngularJS version 1.4.0.
 
 The application is structured into multiple layers following the **Model-View-Controller** pattern. Objects in the data model are created, read, updated and deleted through {@link /guide/resources resource objects} that communicate with the backend API.
 
-**Resources** are managed inside {@link /guide/services services} which take care of state updates, caching, listing and querying resources. Services are singleton instances and they are the main authority over any resource in GenericFrontend.
+**Resources** are managed inside {@link /guide/services services} which take care of state updates, caching, listing and querying resources. Services are singleton instances and they are the main authority over any resource in YaMaps.
 
 **Views**, or application screens, are rendered from HTML templates which are loaded on demand by Angular's template system. The connection between views and the internal data model is managed by controllers.
 

@@ -20,6 +20,7 @@
   "globals": {
     "angular": false,
     "moment": false,
-    "Showdown": false
+    "_": false,
+    "H":false
   }
 }

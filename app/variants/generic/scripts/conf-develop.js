@@ -23,15 +23,15 @@ angular.module('yaMaps')
   debug: true,
   keepMessages: 20,
   customer:{
-    title: 'GenericFrontend',
-    longtitle: 'GenericFrontend - A generic Frontend',
+    title: 'YaMaps',
+    longtitle: 'YaMaps - A generic Frontend',
     name: 'generic',
     domain: 'yaMaps.com',
   },
   menuNav: {
-    main: ['home', 'contact'],
+    main: ['examples', 'contact'],
     // Content for subnav
-    home: [],
+    examples: [],
     contact: [],
   },
   redirectOnLogin: '/'

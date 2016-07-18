@@ -1,6 +1,5 @@
 <!-- NAVIGATION-->
 <nav class="navi navbar site-header hidden-logged-in"
-  ng-controller="UserNavCtrl as unc"
   ng-init="wasFoc=''; sub=''; minCaret=false">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -14,26 +13,26 @@
     <div class="collapse navbar-collapse" id="head-nav">
     <!-- BIG MENU -->
       <ul class="nav navbar-nav nav-big">
-        <li ng-repeat="label in unc.menuNav.main"
+        <li ng-repeat="label in site.menuNav.main"
         class="dropdown wrap-caret"
         ng-mouseover="wasFoc=label"
         ng-mouseleave="wasFoc=''"
         ng-class="{
-          'open': (label)&&(wasFoc===label)&&(unc.menuNav[label].length > 0),
-          'active': (wasFoc===label)&&unc.is(unc.menuNav[label], 1)}">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="{{(unc.menuNav[label].length > 0) ? 'javascript:void(0)' : label}}">{{label}}
+          'open': (label)&&(wasFoc===label)&&(site.menuNav[label].length > 0),
+          'active': (wasFoc===label)&&site.is(site.menuNav[label], 1)}">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="{{(site.menuNav[label].length > 0) ? 'javascript:void(0)' : label}}">{{label}}
           </a>
         </li>
         <li><a href="//google.com">SEARCH</a></li>
       </ul>
       <!-- SMALL MENU -->
       <ul class="nav navbar-nav nav-small">
-        <li ng-repeat="label in unc.menuNav.main"
+        <li ng-repeat="label in site.menuNav.main"
         class="dropdown item-main"
-        basic-click="unc.switchCaret($index)">
-          <a ng-if="unc.menuNav[label].length > 0" class="dropdown-toggle" data-toggle="dropdown">{{label}}
+        basic-click="site.switchCaret($index)">
+          <a ng-if="site.menuNav[label].length > 0" class="dropdown-toggle" data-toggle="dropdown">{{label}}
           </a>
-          <a ng-if="unc.menuNav[label].length <= 0" ng-href="{{label}}" basic-click="site.closeNav()">{{label}}
+          <a ng-if="site.menuNav[label].length <= 0" ng-href="{{label}}" basic-click="site.closeNav()">{{label}}
           </a>
         </li>
         <li class="item-main"><a href="//google.com">SEARCH</a></li>

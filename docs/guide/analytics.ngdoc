@@ -3,10 +3,10 @@
 @sortOrder 800
 @description
 
-# GenericFrontend Analytics Integration
+# YaMaps Analytics Integration
 
 <div class="alert alert-info">
-GenericFrontend frontend analytics is based on [Google Analytics (GA)](https://developers.google.com/analytics/devguides/collection/analyticsjs/events), but may be extended to other backend services.
+YaMaps frontend analytics is based on [Google Analytics (GA)](https://developers.google.com/analytics/devguides/collection/analyticsjs/events), but may be extended to other backend services.
 </div>
 
 Analytics is composed of the following components
@@ -42,9 +42,9 @@ Google Analytics allows you to send custom event types that may contain the foll
 Google Analytics stores all events for an infinite amount of time. For reporting and defining goal completions, events may be filtered in the GA Console. Filters work on all event fields by any of the field values. Filters allow matching by full text, by prefix and regexp match.
 
 
-# GenericFrontend Event Tags
+# YaMaps Event Tags
 
-The following list contains all events defined in the GenericFrontend app:
+The following list contains all events defined in the YaMaps app:
 
 
 Category  | Action          | Label               | Used in

@@ -1,9 +1,9 @@
 @ngdoc overview
-@name Building GenericFrontend
+@name Building YaMaps
 @sortOrder 400
 @description
 
-# Building GenericFrontend
+# Building YaMaps
 
 <div class="alert alert-info">
 **Hint:** for local builds you way want to run **`grunt serve`** and point your browser to **`http://127.0.0.1:9000`** most of the time.

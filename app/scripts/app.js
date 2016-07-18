@@ -153,6 +153,13 @@ app.config(['$provide', function ($provide) {
       controllerAs: 'mpc',
       title: ' '
     }).
+    when('/examples', { redirectTo: '/examples/marker' }).
+    when('/examples/:page', {
+      templateUrl: 'views/examples.html',
+      controller: 'ExamplesViewCtrl',
+      controllerAs: 'evc',
+      title: ' '
+    }).
     when('/contact', {
       templateUrl: 'views/contact.html',
       title: ' '

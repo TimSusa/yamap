@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * @ngdoc directive
  * @name yaMaps.directives:MarkerIcon

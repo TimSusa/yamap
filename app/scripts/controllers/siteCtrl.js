@@ -72,6 +72,7 @@ angular.module('yaMaps')
   this.debug = globals.debug;
   // this.notImplemented = notImplemented;
   this.closeNav = closeNav;
+  this.menuNav = globals.menuNav;
   // controller.startEmailDiag = startEmailDiag;
 
   // 5. Clean up

@@ -3,11 +3,11 @@
 @sortOrder 100
 @description
 
-# Conceptual Overview of GenericFrontend
+# Conceptual Overview of YaMaps
 
 ## Application Structure
 
-The GenericFrontend frontend is structured into multiple layers
+The YaMaps frontend is structured into multiple layers
 
 * **Resources** - objects handling communication with the backend API
 * **Services** - singleton objects for managing frontend state
@@ -15,7 +15,7 @@ The GenericFrontend frontend is structured into multiple layers
 * **Directives** - reusable UI components
 * **Views** - styled layout templates for application screens
 
-The application is initially loaded as a single `index.html` file from https://www.yaMaps.com plus a number of Javascript files. Application screens are rendered from HTML templates. Templates, images and styles are fetched on demand from the same webserver. Live data is fetched and manipulated through the GenericFrontend backend API, which is a RESTful API using JSON as content type.
+The application is initially loaded as a single `index.html` file from https://www.yaMaps.com plus a number of Javascript files. Application screens are rendered from HTML templates. Templates, images and styles are fetched on demand from the same webserver. Live data is fetched and manipulated through the YaMaps backend API, which is a RESTful API using JSON as content type.
 
 
 ## App URLs and Routing
@@ -41,9 +41,9 @@ On failed requests the backend returns a 4xx HTTP status code and embeds a JSON-
 
 ## Authentication
 
-While everyone can download and run the GenericFrontend frontend in a web browser, only logged in users are permitted to perform operations on the backend API. To ensure a frontend user has obtained proper authentication the GenericFrontend application must present a valid **login token** with every call to a protected API endpoint. Tokens are encrypted with a private key and may only be issued by the backend.
+While everyone can download and run the YaMaps frontend in a web browser, only logged in users are permitted to perform operations on the backend API. To ensure a frontend user has obtained proper authentication the YaMaps application must present a valid **login token** with every call to a protected API endpoint. Tokens are encrypted with a private key and may only be issued by the backend.
 
-Login, logout, verification and user signup are handled by the GenericFrontend {@link /api/yaMaps.services:authService#validateToken authService}. The service maintains internal state about a currently logged in user and login token.
+Login, logout, verification and user signup are handled by the YaMaps {@link /api/yaMaps.services:authService#validateToken authService}. The service maintains internal state about a currently logged in user and login token.
 
 Tokens are inserted into the `X-AUTH-TOKEN` HTTP header of every request using a [http interceptor](https://docs.angularjs.org/api/ng/service/$http#interceptors).
 
@@ -85,7 +85,7 @@ The API supports paging of large resource collections such as users or clusters.
 
 ## Internationalization
 
-GenericFrontend is a multi-language app supporting English and German as main languages. We use [angular-translate](https://angular-translate.github.io/) to manage translation across all HTML template. angular-translate stores the user-selected language identifier in local storage (NG_TRANSLATE_LANG_KEY).
+YaMaps is a multi-language app supporting English and German as main languages. We use [angular-translate](https://angular-translate.github.io/) to manage translation across all HTML template. angular-translate stores the user-selected language identifier in local storage (NG_TRANSLATE_LANG_KEY).
 
 Language files are JSON formatted and loaded on demand from `scripts/language/{customer}-{lang}.json` where `customer` is either `generic` or the name of a customer build as defined in the {@link /api/yaMaps.objects:globals global configuration object} and `lang` is the language identifier.
 

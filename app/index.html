@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title ng-bind="site.customer.title"></title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-capable" content="yes" />
 <!--   <meta name="fragment" content="!"> -->
@@ -36,11 +36,17 @@
   <script src="bower_components/stacktrace-js/dist/stacktrace.js"></script>
   <script src="bower_components/lodash/lodash.js"></script>
 
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="mapsjs/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="mapsjs/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="mapsjs/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="mapsjs/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+  <script src="mapsjs/mapsjs-pano.js" type="text/javascript" charset="utf-8"></script>
+
+<!--   <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-pano.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-pano.js" type="text/javascript" charset="utf-8"></script> -->
 
   <!-- Application code -->
   <script src="scripts/app.js"></script>
@@ -52,7 +58,8 @@
   <script src="scripts/controllers/siteCtrl.js"></script>
   <script src="scripts/controllers/userCtrl.js"></script>
   <script src="scripts/controllers/mainPageCtrl.js"></script>
-  <script src="scripts/directives/userNav.js"></script>
+  <script src="scripts/controllers/examplesViewCtrl.js"></script>
+<!--   <script src="scripts/directives/userNav.js"></script> -->
   <script src="scripts/directives/basicClick.js"></script>
 
   <script src="scripts/directives/map.js"></script>
@@ -67,15 +74,7 @@
 
 <body>
   <header ng-include="'views/header.html'"></header>
-    <div ng-view autoscroll="true">
-
-    </div>
-<!--     <div class="container">
-      <div class="row">
-        <div class="col-lg-12" ng-view autoscroll="true">
-        </div>
-      </div>
-    </div> -->
+  <div ng-view autoscroll="true"></div>
   <footer ng-include="'views/footer.html'"></footer>
 
 

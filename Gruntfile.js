@@ -376,6 +376,7 @@ module.exports = function (grunt) {
           dest: '<%= config.build %>',
           src: [
             'bower_components/**/*.js',
+            'mapsjs/*.js',
             '!**/*.min.js',
             '!.#*',
             '!*~'
@@ -1175,7 +1176,6 @@ module.exports = function (grunt) {
       }
     });
   });
-
 
   //
   // Find unused images
